@@ -38,9 +38,9 @@ python motion_planning.py
 
 You should see the quad fly a jerky path of waypoints to the northeast for about 10 m then land.  What's going on here? Your first task in this project is to explain what's different about `motion_planning.py` from the `backyard_flyer_solution.py` script, and how the functions provided in `planning_utils.py` work. 
 
-### Step 7: Write your planner
+### Overview of planner
 
-Your planning algorithm is going to look something like the following:
+The planning algorithm is looks something like the following:
 
 - Load the 2.5D map in the `colliders.csv` file describing the environment.
 - Discretize the environment into a grid or graph representation.
@@ -48,8 +48,6 @@ Your planning algorithm is going to look something like the following:
 - Perform a search using A* or other search algorithm. 
 - Use a collinearity test or ray tracing method (like Bresenham) to remove unnecessary waypoints.
 - Return waypoints in local ECEF coordinates (format for `self.all_waypoints` is [N, E, altitude, heading], where the drone’s start location corresponds to [0, 0, 0, 0]). 
-
-Some of these steps are already implemented for you and some you need to modify or implement yourself.  See the [rubric](https://review.udacity.com/#!/rubrics/1534/view) for specifics on what you need to modify or implement.
 
 ### Writeup
 
@@ -63,7 +61,7 @@ You're reading it! Below I describe how I addressed each rubric point and where 
 ##### motionplanning.py
 In addition to MANUAL, ARMING, DISARMING, TAKEOFF, LANDING, and WAYPOINT, motion_planning also has a PLANNING state.  plan_path function contains the logic to impement the planning.
 ##### planning_utils.py
-######create_gridcreate_grid(data, drone_altitude, safety_distance)    
+###### create_gridcreate_grid(data, drone_altitude, safety_distance)    
 Returns a grid representation of a 2D configuration space based on given obstacle data, drone altitude and safety distance arguments.
 ###### Action(Enum)
 An action is represented by a 3 element tuple.  The first 2 values are the delta of the action relative to the current grid position. The third and final value is the cost of performing the action.
@@ -77,15 +75,8 @@ uses Euclidean / Frobenius norm
 
 These scripts contain a basic planning implementation that includes...
 
-And here's a lovely image of my results (ok this image has nothing to do with it, but it's a nice example of how to include images in your writeup!)
+And here's a lovely image from the simulator 
 ![Top Down View](./misc/high_up.png)
-
-Here's | A | Snappy | Table
---- | --- | --- | ---
-1 | `highlight` | **bold** | 7.41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
 
 ### Implementing Your Path Planning Algorithm
 
